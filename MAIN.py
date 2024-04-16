@@ -10,7 +10,6 @@
 import sys
 import os
 
-from TkVisualizer import TkAudioVisualizer
 
 from pathlib import Path
 
