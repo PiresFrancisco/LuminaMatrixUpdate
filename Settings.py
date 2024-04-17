@@ -12,8 +12,6 @@ from tkinter import *
 from configparser import ConfigParser
 
 import os
-import webbrowser
-
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"/home/pires/PAP FIGMA/build/assets/frame0")
@@ -38,19 +36,12 @@ def LuminaDefs(event):
             config.set('LuminaMatrixConfig', 'SliderVolume', '0')
             config.set('LuminaMatrixConfig', 'MatrixBaudRateArduino', '9600')
             config.set('LuminaMatrixConfig', 'LuminaMute', 'true')
+            config.set('LuminaMatrixConfig', 'TemperaturaMatrix', '7')
             config.set('LuminaMatrixConfig', 'RateFalaVelocidade', '50')
-
-            
-            temperaturaLumina = temperatura.get()
-            print(temperaturaLumina)
-            config.set('LuminaMatrixConfig', 'temperaturalumina', str(temperaturaLumina))
-
-
 
             with open('LuminaConfig.conf', 'w') as f:
                 config.write(f)
-
-
+            
 
         ProcessoGuardar()
         defs.destroy()
@@ -102,28 +93,11 @@ def LuminaDefs(event):
             19.0,
             110.0,
             anchor="nw",
-            text="Escala de Temperatura da Lumina:",
+            text="Escala Temperatura da Lumina:",
             fill="#FFFFFF",
             font=("Product Sans", 25 * -1),
             tags="tempAI"
         )
-    
-    ajudaTEMPAI = canvas.create_text(
-            410.0,
-            120.0,
-            anchor="nw",
-            text="O que é isto?",
-            fill="lightblue",
-            font=("Product Sans", 11 * -1),
-            tags="ajudaTEMPAI"
-        )
-
-
-    def HLajudaTEMP(event):
-        webbrowser.open_new("https://google.com")
-
-
-    canvas.tag_bind(ajudaTEMPAI,'<Button-1>',HLajudaTEMP)
 
     defs.resizable(False, False)
     defs.mainloop()

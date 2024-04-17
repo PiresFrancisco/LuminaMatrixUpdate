@@ -11,8 +11,10 @@
 
 import serial
 import os
-import tkinter
+from tkinter import *
 from pynput.keyboard import Key, Listener
+from PIL import ImageTk
+import PIL.Image
 
 from MAIN import *
 
@@ -20,6 +22,25 @@ from MAIN import *
 import keyboard
 import threading
 
+
+
+splash_root = Tk()
+
+splash_root.geometry("500x200")
+splash_root.wm_attributes('-type','splash')
+splash_root.configure(background='black')
+
+frame = Frame(splash_root, width=500, height=200)
+frame.pack()
+frame.place(anchor='center', relx=0.5, rely=0.5)
+
+
+
+
+img = ImageTk.PhotoImage(PIL.Image.open("LOGO.png"))
+label = Label(frame, image = img)
+
+label.pack()
 
 def Boot():
     try:
@@ -34,10 +55,11 @@ def Boot():
             print(" ")
             print(" ")
             print("DEBUG: PORTA COM  OFF")
-            EstadoCOM = "\n \n \n Erro 1: Matrix (Arduino) não Conectado.\n Certifique-se que o USB está ligado \n e que a porta COM não está obstruida."
+            EstadoCOM = "\n \n \n Erro: Matrix (Arduino) não Conectado.\n Certifique-se que o USB está ligado \n e que a porta COM não está obstruida."
             Vermelho = False
+            splash_root.destroy()
             LuminaBegin(Vermelho,EstadoCOM)
-
+      
 
 
 def LuminaSelfPINGCheck():
@@ -54,7 +76,7 @@ def LuminaSelfPINGCheck():
          
          def fechar():
               erro.destroy()
-
+              splash_root.destroy()
          def TentarN():
               python = sys.executable
               os.execl(python, python, * sys.argv)
@@ -74,5 +96,7 @@ def LuminaSelfPINGCheck():
          tentar.place(x=225,y=50)
          erro.mainloop()
 
-#COMEÇAR TESTE PING
-LuminaSelfPINGCheck()
+splash_root.after(3000, LuminaSelfPINGCheck)
+splash_root.mainloop()
+
+

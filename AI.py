@@ -6,11 +6,15 @@ import time
 import sys
 import pyttsx3
 import vlc
+from configparser import ConfigParser
 
-temperatura = 3
+config = ConfigParser()
+config.read('LuminaConfig.conf')
 
-openai.api_key = "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"
+config.readfp(open(r'LuminaConfig.conf'))
+openai.api_key = config.get('LuminaMatrixConfig', 'APIkey')
 ASSISTANT_ID = "asst_Cz529hvrKSIUBryFJBR6F2Xf"
+
 
 def luminaAi(prompt):
     thread = openai.beta.threads.create(messages=[{"role": "user", "content": prompt,}])

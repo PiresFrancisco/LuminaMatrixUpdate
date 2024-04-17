@@ -5,8 +5,6 @@ import os
 import filecmp
 from difflib import Differ
 import time
-
-
 ## Lumina Update  -- 2024 PiresWorks
 
 ###################################################################################
@@ -50,44 +48,8 @@ def CheckUpdate():
             print("LuminaMatrix está a encerrar...")
             time.sleep(2)
 
-            os.remove('AI.py')
-            os.remove('teste.py')
-            os.remove('Settings.py')
-            os.remove('MAIN.py')
-            os.remove('LuminaConfig.conf')
-            os.remove('LuminaBootStrap.py')
-            os.remove('lumina_controlos_media.py')
-            shutil.rmtree('assets')
-
-            shutil.rmtree('LuminaMatrixUpdateBN')
-            time.sleep(2)
-            shutil.rmtree('LuminaMatrixUpdate')
-            luminaGIT.clone("https://github.com/PiresFrancisco/LuminaMatrixUpdate")
-            time.sleep(2)
-            print("\n \n \n \n \n \n")
-            print("Atualização Descarregada com sucesso.")
-            time.sleep(2)
-
-            pastaUpdate = "LuminaMatrixUpdate"
             
-            
-            time.sleep(2)
-            shutil.move(os.path.join(pastaUpdate, "AI.py"), os.getcwd())
-            shutil.move(os.path.join(pastaUpdate, "lumina_controlos_media.py"), os.getcwd())
-            shutil.move(os.path.join(pastaUpdate, "LuminaBootStrap.py"), os.getcwd())
 
-            shutil.move(os.path.join(pastaUpdate, "MAIN.py"), os.getcwd())
-            shutil.move(os.path.join(pastaUpdate, "Settings.py"), os.getcwd())
-            shutil.move(os.path.join(pastaUpdate, "teste.py"), os.getcwd())
-            shutil.move(os.path.join(pastaUpdate, "assets"), os.getcwd())
-
-            print("Atualização Instalada com sucesso.")
-            time.sleep(2)
-            print("LuminaMatrix está a iniciar...")
-            time.sleep(2)
-            
-            os.system("python3 LuminaBootStrap.py")
-                
 
 
 CheckUpdate()
